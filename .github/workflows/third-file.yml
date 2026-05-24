@@ -1,0 +1,28 @@
+name: third task
+
+on:
+   push:
+      branches:
+            - main
+
+
+jobs:
+      lint:
+            runs-on: ubuntu-24.04
+            steps:
+                  - run: echo "lint running"
+      
+      test:
+            runs-on: ubuntu-24.04
+            strategy:
+                  matrix:
+                        node-version: [22, 24]
+            steps:
+                  - run: echo "testing app with ${{ matrix.node-version }}"
+
+      deploy:
+            runs-on: ubuntu-24.04
+            needs: [lint, test]
+            steps:
+                  - run: echo "first two stages successful"
+            
