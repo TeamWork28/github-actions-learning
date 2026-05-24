@@ -1,0 +1,20 @@
+name: on basis pipeline check
+
+on:
+  push:
+    branches:
+      - main
+      - 'release/*'
+    paths:
+      - '/app*'
+  pull_request:
+    branches:
+      - main
+    type:
+      - opened
+      - synchronize
+      - closed
+  schedule:
+    - cron: '5 * * * 5'
+
+
