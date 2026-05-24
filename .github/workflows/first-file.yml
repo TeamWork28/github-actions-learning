@@ -1,0 +1,19 @@
+name: first-github-actions
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Check test
+        run: npm -v
+
+      - name: docker Check
+        run: docker --version
+
+        
