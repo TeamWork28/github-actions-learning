@@ -22,7 +22,8 @@ jobs:
                         node-version: ${{ matrix.node-version }}
                   - run: |
                         echo "Node version set at ${{ matrix.node-version }}"
+                        echo "This is for ${{ secrets.MY_FIRST_SECRET }} on $APP_NAME"
                         env:
                             MY_SECRET: ${{ secrets.MY_FIRST_SECRET }}
-                        echo "This is for ${{ secrets.MY_FIRST_SECRET }} on $APP_NAME"
+
 
