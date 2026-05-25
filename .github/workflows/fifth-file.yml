@@ -1,0 +1,28 @@
+name: fifth task
+
+on:
+      push:
+            branches:
+                  - main
+
+env:
+      APP_NAME: Learning
+
+jobs:
+      checkout:
+            runs-on: ubuntu-24.04
+
+            strategy:
+                  matrix:
+                        node-version: [ 22,24 ]
+            steps:
+                  - uses: actions/checkout@v4
+                  - uses: actions/setup-node@v4
+                    with:
+                        node-version: ${{ matrix.node-version }}
+                  - run: |
+                        echo "Node version set at ${{ matrix.node-version }}"
+                        env:
+                            MY_SECRET: ${{ secrets.MY_FIRST_SECRET }}
+                        echo "This is for ${{ secrets.MY_FIRST_SECRET }} on $APP_NAME"
+
