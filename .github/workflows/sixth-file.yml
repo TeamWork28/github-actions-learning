@@ -1,0 +1,32 @@
+name: sixth task
+
+on:
+      push:
+            branches:
+                  - main
+
+env:
+      APP_NAME: Learning
+
+jobs:
+      checkout:
+            runs-on: ubuntu-24.04
+
+            steps:
+                  - name: Code checkout
+                    uses: actions/checkout@v4
+
+                  - name: Node setout                   
+                    uses: actions/setup-node@v4
+                    with:
+                        node-version: 22
+                  - name: Install Dependencies
+                    run: echo "Installing dependencies"
+
+                  - name: Run tests
+                    run: npm test
+                    if: github.ref == 'refs/heads/main'                   
+
+                  - name: Deployment
+                    run: echo "Deploy successful for $APP_NAME"
+                    if: github.ref == 'refs/heads/main'
