@@ -1,0 +1,13 @@
+name: seventh file
+
+on:
+      push:
+            branches:
+                  - main
+
+jobs:
+      first-stage:
+            runs-on: ubuntu-24.04
+            environment: First-Stage
+            steps:
+                  - run: echo "Request approve check"
