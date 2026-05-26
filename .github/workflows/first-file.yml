@@ -1,4 +1,4 @@
-name: first-github-actions
+name: first-file
 
 on:
   push:
