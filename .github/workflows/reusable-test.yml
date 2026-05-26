@@ -1,0 +1,21 @@
+# .github/workflows/reusable-test.yml
+name: Reusable Test Workflow
+
+on:
+  workflow_call:              # this is what makes it reusable
+    inputs:
+      node-version:           # define the input it expects
+        required: true
+        type: string
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ inputs.node-version }}    # use the input here
+
+      - run: echo "Tests passed on Node ${{ inputs.node-version }}"

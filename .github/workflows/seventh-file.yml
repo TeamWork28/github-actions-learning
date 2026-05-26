@@ -5,9 +5,27 @@ on:
             branches:
                   - main
 
+permissions:
+      contents: read
+
 jobs:
-      first-stage:
+      staging:
             runs-on: ubuntu-24.04
-            environment: First-Stage
+            environment: Staging
             steps:
-                  - run: echo "Request approve check"
+                  - name: First step
+                    uses: actions/checkout@v4
+
+                  - name: setup-node
+                    uses: actions/setup-node@v4
+                    with:
+                        node-version: '22'
+      production: 
+            runs-on: ubuntu-24.04
+            needs: staging
+            environment: Production
+            steps:
+                  - name: Deployment
+                    uses: actions/checkout@v4
+
+                  - run: echo "Node-Version Deployment successful"

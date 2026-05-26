@@ -1,0 +1,21 @@
+name: eighth file
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  staging:
+    uses: ./.github/workflows/reusable-test.yml
+    with:
+      node-version: '22'
+
+  production:
+    needs: staging
+    uses: ./.github/workflows/reusable-test.yml
+    with:
+      node-version: '22'
